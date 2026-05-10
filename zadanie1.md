@@ -100,7 +100,7 @@ RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 WORKDIR /app
 
 # Pobieranie kodu przez SSH
-RUN --mount=type=ssh git clone git@github.com:mikjecz/docker-weather-app.git .
+RUN --mount=type=ssh git clone git@github.com:mikjec/docker-weather-app.git .
 
 # Statyczna kompilacja pod wiele architektur
 RUN CGO_ENABLED=0 go build -o weather-app main.go
@@ -125,11 +125,10 @@ CMD ["./weather-app"]
 ### a. Budowanie obrazu
 Użyto buildera `docker-container` dla obsługi wielu platform i cache registry.
 ```bash
-docker buildx build --platform linux/amd64,linux/arm64 --ssh default=$HOME/.ssh/id_rsa -t [TWÓJ_LOGIN]/pogoda:v1 --cache-to type=registry,ref=[TWÓJ_LOGIN]/pogoda-cache,mode=max --cache-from type=registry,ref=[TWÓJ_LOGIN]/pogoda-cache --push .
+docker buildx build --platform linux/amd64,linux/arm64 --ssh default=$HOME/.ssh/id_rsa -t mikjecz/weather-app:v1 --cache-to type=registry,ref=mikjecz/weather-app-cache,mode=max --cache-from type=registry,ref=mikjecz/weather-app-cache --push .
 ```
 
 ### b. Uruchomienie kontenera
-Użyto buildera `docker-container` dla obsługi wielu platform i cache registry.
 ```bash
 docker run -d -p 8080:8080 --name weather-app [TWÓJ_LOGIN]/pogoda:v1
 ```
