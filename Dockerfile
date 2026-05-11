@@ -1,13 +1,14 @@
 # syntax=docker/dockerfile:1
 
 #Etap 1
-FROM golang:1.24-alpine AS builder
+FROM golang:1.25.10-alpine AS builder
 
 # Instalacja narzędzi do SSH i Gita
 RUN apk add --no-cache git openssh-client
 RUN mkdir -p -m 0700 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 WORKDIR /app
+
 
 # Pobieranie kodu przez SSH
 RUN --mount=type=ssh git clone git@github.com:mikjec/docker-weather-app.git .
