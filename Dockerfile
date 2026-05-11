@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 #Etap 1
-FROM golang:1.22-alpine AS builder
+FROM golang:1.24-alpine AS builder
 
 # Instalacja narzędzi do SSH i Gita
 RUN apk add --no-cache git openssh-client
@@ -18,7 +18,7 @@ RUN CGO_ENABLED=0 go build -o weather-app main.go
 
 #Etap 2
 
-FROM alpine:3.19
+FROM alpine:3.23
 LABEL org.opencontainers.image.authors="Mikolaj Jeczala"
 WORKDIR /root/
 COPY --from=builder /app/weather-app .
