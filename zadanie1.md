@@ -219,6 +219,7 @@ Podczas pierwszego budowania w logach pojawił się komunikat ERROR importing ca
 ```bash
 docker run -d -p 8080:8080 --name weather-app mikjecz/weather-app:v1
 ```
+![Dowód działania - przeglądarka](app.png)
 
 ### c. Pobranie informacji z logów
 ```
