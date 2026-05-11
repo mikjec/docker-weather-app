@@ -44,7 +44,7 @@ func pageHandler(w http.ResponseWriter, r *http.Request) {
 	html := fmt.Sprintf(`
 	<!DOCTYPE html>
 	<html lang="pl">
-	<head><meta charset="UTF-8"><title>Pogodynka Cloud</title></head>
+	<head><meta charset="UTF-8"><title>Weather App</title></head>
 	<body style="font-family: sans-serif; max-width: 500px; margin: 40px auto; text-align: center;">
 	<h2>Aplikacja Pogodowa</h2>
 	<p>Autor: %s</p>
